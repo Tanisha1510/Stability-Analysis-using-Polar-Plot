@@ -17,8 +17,28 @@ Computer with MATLAB software
 	Also determine the stability.
 
 ## Program: 
-
+```
+num=[1]
+den=[conv(1,0),conv(1,0.5),conv(1,0.2)]
+sys=tf(num,den)
+w=logspace(-1,2,1000)
+[mag phase]=bode(sys,w)
+mag=squeeze(mag)
+phase=squeeze(phase)
+theta=deg2rad(phase)
+polarplot(theta,mag,'LineWidth',1.5)
+[gm pm wpc wgc]=margin(sys)
+if (wpc>wgc)
+    disp('stable')
+elseif (wpc==wgc)
+    disp('marginally stable')
+else
+    disp('unstable')
+end
+```
 ## Output:
+<img width="694" height="614" alt="image" src="https://github.com/user-attachments/assets/78067779-76d5-414f-9067-05850e6adbd3" />
+
 
 ## Result:
 Thus the polar plot for the given transfer function was drawn and verified using MATLAB. <br>
